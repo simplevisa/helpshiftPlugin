@@ -1,0 +1,4 @@
+helpshift-phonegap
+==================
+
+HelpShift Phonegap
