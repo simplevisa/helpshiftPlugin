@@ -28,10 +28,10 @@ var HelpshiftPG = {
     * @param {string} domainName This is your domain name without any http:// or forward slashes
     * @param {string} apiKey This is your developer API Key
     *
-    * @example HelpshiftPG.init("&lt;APP_ID&gt;", "&lt;DOMAIN_NAME&gt;", "&lt;API_KEY&gt;");
+    * @example HelpshiftPG.init("<APP_ID>", "<DOMAIN_NAME>", "<API_KEY>");
     */
     init:function(appId, domainName, apiKey) {
-        Cordova.exec("HelpshiftPG.init", appId, domainName, apiKey);
+        cordova.exec(null, null, "HelpshiftPG", "init",[appId,domainName,apiKey]);
     },
 
     /**
@@ -45,10 +45,10 @@ var HelpshiftPG = {
     showSupport:function(options) {
         if (options && typeof options === "object") {
             if ('showConvOnReportIssue' in options) {
-                Cordova.exec("HelpshiftPG.showSupport", options);
+                cordova.exec(null, null, "HelpshiftPG", "showSupport",[options]);
             }
         } else {
-            Cordova.exec("HelpshiftPG.showSupport");
+            cordova.exec(null, null, "HelpshiftPG", "showSupport",[]);
         }
     },
 
@@ -63,10 +63,10 @@ var HelpshiftPG = {
     reportIssue:function(options) {
         if (options && typeof options === "object") {
             if ('showConvOnReportIssue' in options) {
-                Cordova.exec("HelpshiftPG.reportIssue", options);
+                cordova.exec(null, null, "HelpshiftPG", "reportIssue",[options]);
             }
         } else {
-            Cordova.exec("HelpshiftPG.reportIssue");
+            cordova.exec(null, null, "HelpshiftPG", "reportIssue",[]);
         }
     },
 
@@ -76,7 +76,7 @@ var HelpshiftPG = {
     * @example HelpshiftPG.showInbox();
     */
     showInbox:function() {
-        Cordova.exec("HelpshiftPG.showInbox");
+        cordova.exec(null, null, "HelpshiftPG", "showInbox",[]);
     },
 
     /**
@@ -90,10 +90,10 @@ var HelpshiftPG = {
     showFAQs:function(options) {
         if (options && typeof options === "object") {
             if (('showConvOnReportIssue' in options) || ('showReportIssue' in options)) {
-                Cordova.exec("HelpshiftPG.showFAQs", options);
+                cordova.exec(null, null, "HelpshiftPG", "showFAQs",[options]);
             }
         } else {
-            Cordova.exec("HelpshiftPG.showFAQs");
+            cordova.exec(null, null, "HelpshiftPG", "showFAQs",[]);
         }
     },
 
@@ -104,11 +104,11 @@ var HelpshiftPG = {
     * @param {string} faqSectionPublishId The publish id associated with the faq section which is shown in the FAQ page on the admin side 
         (__yourcompanyname__.helpshift.com/admin/faq/).
     * 
-    * @example HelpshiftPG.showFAQSection("&lt;PUBLISH_ID&gt;");
+    * @example HelpshiftPG.showFAQSection("<PUBLISH_ID>");
     */
     showFAQSection:function(faqSectionPublishId) {
         if(faqSectionPublishId && typeof faqSectionPublishId === "string") {
-            Cordova.exec("HelpshiftPG.showFAQSection", faqSectionPublishId);
+            cordova.exec(null, null, "HelpshiftPG", "showFAQSection",[faqSectionPublishId]);
         }
     },
 
@@ -119,11 +119,11 @@ var HelpshiftPG = {
     * @param {string} faqPublishId The publish id associated with the faq which is shown when you expand a single FAQ 
         (__yourcompanyname__.helpshift.com/admin/faq/)
     *
-    * @example HelpshiftPG.showFAQ("&lt;PUBLISH_ID&gt;");
+    * @example HelpshiftPG.showFAQ("<PUBLISH_ID>");
     */
     showFAQ:function(faqPublishId) {
         if(faqPublishId && typeof faqPublishId === "string") {
-            Cordova.exec("HelpshiftPG.showFAQ", faqPublishId);
+            cordova.exec(null, null, "HelpshiftPG", "showFAQ",[faqPublishId]);
         }
     },
 
@@ -137,7 +137,7 @@ var HelpshiftPG = {
     */
     setUserIdentifier:function(userIdentifier) {
         if(userIdentifier && typeof userIdentifier === "string") {
-            Cordova.exec("HelpshiftPG.setUserIdentifier", userIdentifier);
+            cordova.exec(null, null, "HelpshiftPG", "setUserIdentifier",[userIdentifier]);
         }
     },
 
@@ -151,7 +151,7 @@ var HelpshiftPG = {
     */
     setUsername:function(username) {
         if(username && typeof username === "string") {
-            Cordova.exec("HelpshiftPG.setUsername", username);
+            cordova.exec(null, null, "HelpshiftPG", "setUsername",[username]);
         }
     },
 
@@ -165,7 +165,7 @@ var HelpshiftPG = {
     */
     setUseremail:function(useremail) {
         if(useremail && typeof useremail === "string") {
-            Cordova.exec("HelpshiftPG.setUseremail", useremail);
+            cordova.exec(null, null, "HelpshiftPG", "setUseremail",[useremail]);
         }
     },
 
@@ -179,7 +179,7 @@ var HelpshiftPG = {
     */
     leaveBreadCrumb:function(breadCrumb) {
         if(breadCrumb && typeof breadCrumb === "string") {
-            Cordova.exec("HelpshiftPG.leaveBreadCrumb", breadCrumb);
+            cordova.exec(null, null, "HelpshiftPG", "leaveBreadCrumb",[breadCrumb]);
         }
     },
 
@@ -211,10 +211,10 @@ var HelpshiftPG = {
     */
     notificationCountAsync:function(isAsync) {
         if(isAsync) {
-            Cordova.exec("HelpshiftPG.notificationCountAsync", true);
+            cordova.exec(null, null, "HelpshiftPG", "notificationCountAsync",[true]);
         } else {
             var notifyCb = this.notificationCB;
-            Cordova.exec(function(count) {
+            cordova.exec(function(count) {
                 if(notifyCb) {
                     notifyCb.apply(this, [count]);
                 }
@@ -235,9 +235,9 @@ var HelpshiftPG = {
     */
     startNotificationCountPolling:function(pollInterval) {
         if(pollInterval && typeof pollInterval === "number") {
-            Cordova.exec("HelpshiftPG.startNotificationCountPolling", pollInterval);
+            cordova.exec(null, null, "HelpshiftPG", "startNotificationCountPolling",[pollInterval]);
         } else {
-            Cordova.exec("HelpshiftPG.startNotificationCountPolling");
+            cordova.exec(null, null, "HelpshiftPG", "startNotificationCountPolling",[]);
         }
     },
 
@@ -247,7 +247,7 @@ var HelpshiftPG = {
     *
     */
     stopNotificationCountPolling:function() {
-        Cordova.exec("HelpshiftPG.stopNotificationCountPolling");
+        cordova.exec(null, null, "HelpshiftPG", "stopNotificationCountPolling",[]);
     },
     
     /**
@@ -257,11 +257,11 @@ var HelpshiftPG = {
     *
     * @param {string} deviceToken The deviceToken received from the push notification servers.
     *
-    * @example HelpshiftPG.registerDeviceToken("&lt;DEVICE_TOKEN&gt;");
+    * @example HelpshiftPG.registerDeviceToken("<DEVICE_TOKEN>");
     */
     registerDeviceToken:function(deviceToken) {
         if(deviceToken && typeof deviceToken === "string") {
-            Cordova.exec("HelpshiftPG.registerDeviceToken", deviceToken);
+            cordova.exec(null, null, "HelpshiftPG", "registerDeviceToken",[]);
         }
     },
 
@@ -276,7 +276,7 @@ var HelpshiftPG = {
     */
     handleNotification:function(notificationInfo) {
         if(notificationInfo && typeof notificationInfo === "object") {
-            Cordova.exec("HelpshiftPG.handleNotification", notificationInfo);
+            cordova.exec(null, null, "HelpshiftPG", "handleNotification",[notificationInfo]);
         }
     },
 
@@ -285,5 +285,4 @@ var HelpshiftPG = {
             this.notificationCB.apply(this, [count]);
         }
     }
-
 };
