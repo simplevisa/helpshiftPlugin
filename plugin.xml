@@ -25,7 +25,7 @@
         <header-file src="src/ios/Helpshift.h" />
 
         <source-file src="src/ios/HelpshiftPG.m" />
-        <source-file src="src/ios/libHelpshift.a" framework="true" />
+        <source-file src="src/ios/libHelpshift.a" />
 
         <resource-file src="src/ios/HSResources" />
         <resource-file src="src/ios/HSThemes" />
