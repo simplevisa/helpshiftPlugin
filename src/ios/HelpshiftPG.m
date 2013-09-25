@@ -1,28 +1,37 @@
-//
-//  HelpshiftPG.m
-//  HelpshiftPG
-//
-//  Created by Suman Raj on 18/03/13.
-//  Copyright (c) 2013 Helpshift,Inc., All rights reserved.	
-//
+/*
+ * HelpshiftPG.m
+ * Helpshift PhoneGap Plugin
+ *
+ * Get the documentation at http://www.helpshift.com/docs
+ *
+*/
 
 #import "HelpshiftPG.h"
 
 @implementation HelpshiftPG
 
 - (void)init:(CDVInvokedUrlCommand*)command {
-    
+
     NSString *appId = [command.arguments objectAtIndex:0];
     NSString *domainName = [command.arguments objectAtIndex:1];
     NSString *apiKey = [command.arguments objectAtIndex:2];
-    
-    [Helpshift installForAppID:appId domainName:domainName apiKey:apiKey];
-    
+    NSMutableDictionary *optionsDict = nil;
+    if([command.arguments count] > 3) {
+      optionsDict = [[[command.arguments objectAtIndex:3 withDefault:nil] mutableCopy] autorelease];
+    }
+    if (!optionsDict) {
+        optionsDict = [[[NSMutableDictionary alloc] init] autorelease];
+    }
+    [optionsDict setObject:@"phonegap" forKey:@"sdkType"];
+    [Helpshift installForAppID:appId domainName:domainName apiKey:apiKey withOptions : optionsDict];
+
     [[Helpshift sharedInstance] setDelegate:self];
 }
 
 - (void)showSupport:(CDVInvokedUrlCommand*)command{
-    NSDictionary *optionsDict = [command.arguments objectAtIndex:0 withDefault:nil];
+    NSDictionary *optionsDict = nil;
+    if ([command.arguments count] > 0)
+        optionsDict = [command.arguments objectAtIndex:0 withDefault:nil];
     if (optionsDict) {
         [[Helpshift sharedInstance] showSupport:self.viewController withOptions:optionsDict];
     } else {
@@ -31,7 +40,9 @@
 }
 
 - (void)reportIssue:(CDVInvokedUrlCommand*)command {
-    NSDictionary *optionsDict = [command.arguments objectAtIndex:0 withDefault:nil];
+    NSDictionary *optionsDict = nil;
+    if ([command.arguments count] > 0)
+        optionsDict = [command.arguments objectAtIndex:0 withDefault:nil];
     if (optionsDict) {
         [[Helpshift sharedInstance] reportIssue:self.viewController withOptions:optionsDict];
     } else {
@@ -44,7 +55,9 @@
 }
 
 - (void) showFAQs:(CDVInvokedUrlCommand*)command {
-    NSDictionary *optionsDict = [command.arguments objectAtIndex:0 withDefault:nil];
+    NSDictionary *optionsDict = nil;
+    if ([command.arguments count] > 0)
+        optionsDict = [command.arguments objectAtIndex:0 withDefault:nil];
     if (optionsDict) {
        [[Helpshift sharedInstance] showFAQs:self.viewController withOptions:optionsDict];
     } else {
@@ -78,23 +91,16 @@
 }
 
 - (void)leaveBreadCrumb:(CDVInvokedUrlCommand*)command {
-    NSString* breadCrumb = [command.arguments objectAtIndex:0];
+    NSString *breadCrumb = [command.arguments objectAtIndex:0];
     [Helpshift leaveBreadCrumb:breadCrumb];
 }
 
-- (void) startNotificationCountPolling:(CDVInvokedUrlCommand*)command {
-    if([command.arguments count] > 0) {
-       NSInteger pollInterval = [[command.arguments objectAtIndex:0 withDefault:[NSNull null]] integerValue];
-       if (pollInterval) {
-            [[Helpshift sharedInstance] startNotificationCountPolling:pollInterval];
-       }
-    } else {
-        [[Helpshift sharedInstance] startNotificationCountPolling];
-    }
+- (void) clearBreadCrumbs:(CDVInvokedUrlCommand*)command {
+  [[Helpshift sharedInstance] clearBreadCrumbs];
 }
 
-- (void) stopNotificationCountPolling:(CDVInvokedUrlCommand*)command {
-    [[Helpshift sharedInstance] stopNotificationCountPolling];
+- (void) clearUserData:(CDVInvokedUrlCommand*)command {
+  [[Helpshift sharedInstance] clearUserData];
 }
 
 - (void) notificationCountAsync:(CDVInvokedUrlCommand*)command {
@@ -112,7 +118,7 @@
 -(NSData*) bytesFromHexString:(NSString *)aString;
 {
     NSString *theString = [[aString componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsJoinedByString:nil];
-    
+
     NSMutableData* data = [NSMutableData data];
     int idx;
     for (idx = 0; idx+2 <= theString.length; idx+=2) {
@@ -141,6 +147,15 @@
     }
 }
 
+- (void) handleLocalNotification:(CDVInvokedUrlCommand*)command {
+    NSString *issueID = [command.arguments objectAtIndex:0 withDefault:nil];
+    if (issueID) {
+      UILocalNotification *notif = [[[UILocalNotification alloc] init] autorelease];
+      notif.userInfo = @{@"issue_id" : issueID};
+      [[Helpshift sharedInstance] handleLocalNotification:notif withController:self.viewController];
+    }
+}
+
 #pragma mark HelpshiftDelegate Implementation
 - (void) notificationCountAsyncReceived:(NSInteger)count {
     NSString *jsString = nil;
@@ -148,4 +163,9 @@
     [self.commandDelegate evalJs:jsString];
 }
 
+- (void) helpshiftSessionHasEnded {
+    NSString *jsString = nil;
+    jsString = [NSString stringWithFormat:@"HelpshiftPG._nativeSessionEndedCall();"];
+    [self.commandDelegate evalJs:jsString];
+}
 @end

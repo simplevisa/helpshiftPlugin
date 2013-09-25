@@ -1,10 +1,10 @@
-//
-//  HelpshiftPG.h
-//  PhoneGap native plugin for HelpshiftSDK version 2.0.1 
-//
-//  Created by Suman Raj on 18/03/13.
-//  Copyright (c) 2013 Helpshift,Inc., All rights reserved.	
-//
+/*
+ * HelpshiftPG.h
+ * Helpshift PhoneGap Plugin
+ *
+ * Get the documentation at http://www.helpshift.com/docs
+ *
+*/
 
 #import <Cordova/CDV.h>
 #import "Helpshift.h"
@@ -33,9 +33,9 @@
 
 - (void) leaveBreadCrumb:(CDVInvokedUrlCommand*)command;
 
-- (void) startNotificationCountPolling:(CDVInvokedUrlCommand*)command;
+- (void) clearBreadCrumbs:(CDVInvokedUrlCommand*)command;
 
-- (void) stopNotificationCountPolling:(CDVInvokedUrlCommand*)command;
+- (void) clearUserData:(CDVInvokedUrlCommand*)command;
 
 - (void) notificationCountAsync:(CDVInvokedUrlCommand*)command;
 
@@ -43,4 +43,5 @@
 
 - (void) handleNotification:(CDVInvokedUrlCommand*)command;
 
+- (void) handleLocalNotification:(CDVInvokedUrlCommand*)command;
 @end

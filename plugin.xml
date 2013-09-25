@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin xmlns="http://www.phonegap.com/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"
-    id="com.helpshift.helpshiftpg" version="1.0.0">
+    id="com.helpshift.plugins.HSPhoneGapPlugin" version="3.0.0">
     <name>Helpshift PhoneGap Plugin</name>
     <asset src="www/js/helpshiftpg.js" target="js/helpshiftpg.js" />
     <!-- ios -->
     <platform name="ios">
-        <!-- Cordova < 2.3 -->   
+        <!-- Cordova < 2.3 -->
         <plugins-plist key="HelpshiftPG" string="HelpshiftPG" />
 
         <!-- Cordova >= 2.3 -->
