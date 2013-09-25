@@ -32,8 +32,8 @@
         <resource-file src="src/ios/HSResources" />
         <source-file src="src/ios/HSThemes"/>
         <!-- HSThemes-->
-        <resource-file src="src/ios/HSThemes/HelpshiftConfig.plist"/>
-        <resource-file src="src/ios/HSThemes/HelpshiftConfigDark.plist" />
+        <!-- <resource-file src="src/ios/HSThemes/HelpshiftConfig.plist"/>
+        <resource-file src="src/ios/HSThemes/HelpshiftConfigDark.plist" /> -->
 
         <framework src="CoreGraphics.framework" />
         <framework src="QuartzCore.framework" />
