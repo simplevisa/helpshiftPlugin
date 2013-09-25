@@ -9,7 +9,7 @@
     </engines>
 
     <js-module src="www/helpshiftpg.js" name="HelpshiftPG">
-        <clobbers target="HelpshiftPG" />
+        <clobbers target="plugins.helpshift" />
     </js-module>
 
     <!-- ios -->
