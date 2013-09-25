@@ -29,7 +29,7 @@
         <source-file src="src/ios/libHelpshift.a" framework="true"/>
 
         <resource-file src="src/ios/HSResources" />
-        <resource-dir src="src/ios/HSThemes"  />
+        <resource-file src="src/ios/HSThemes"  />
 
         <framework src="CoreGraphics.framework" />
         <framework src="QuartzCore.framework" />
