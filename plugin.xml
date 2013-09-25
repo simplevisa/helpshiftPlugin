@@ -8,9 +8,10 @@
         <engine name="cordova" version=">=3.0.0" />
     </engines>
 
-    <js-module src="www/helpshiftpg.js" name="HelpshiftPG">
+    <!-- <js-module src="www/helpshiftpg.js" name="HelpshiftPG">
         <clobbers target="plugins.helpshift" />
-    </js-module>
+    </js-module> -->
+    <asset src="www/helpshiftpg.js" target="js/helpshiftpg.js" />
 
     <!-- ios -->
     <platform name="ios">
@@ -39,5 +40,11 @@
         <framework src="UIKit.framework" />
         <framework src="libz.dylib" />
         <framework src="libsqlite3.0.dylib" />
+
+        <info>
+        Add this script tag to your index.html:
+        &lt;script src="js/helpshiftpg.js"&gt;&lt;/script&gt;
+        </info>
+
     </platform>
 </plugin>
