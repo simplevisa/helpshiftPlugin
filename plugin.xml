@@ -27,12 +27,13 @@
 
         <source-file src="src/ios/HelpshiftPG.m" compiler-flags="-fno-objc-arc" />
         <source-file src="src/ios/libHelpshift.a" framework="true"/>
-
-        <resource-file src="src/ios/HSResources" />
+        
+        <!-- HSResources -->
+        <resource-dir src="src/ios/HSResources" />
 
         <!-- HSThemes-->
-        <resource-file src="src/ios/HSThemes/HelpshiftConfig.plist" target-dir="Resources/HSThemes" />
-        <resource-file src="src/ios/HSThemes/HelpshiftConfigDark.plist" target-dir="Resources/HSThemes" />
+        <resource-file src="src/ios/HSThemes/HelpshiftConfig.plist" />
+        <resource-file src="src/ios/HSThemes/HelpshiftConfigDark.plist" />
 
         <framework src="CoreGraphics.framework" />
         <framework src="QuartzCore.framework" />
@@ -43,11 +44,9 @@
         <framework src="UIKit.framework" />
         <framework src="libz.dylib" />
         <framework src="libsqlite3.0.dylib" />
-
-        <info>
-        Add this script tag to your index.html:
-        &lt;script src="js/helpshiftpg.js"&gt;&lt;/script&gt;
-        </info>
-
     </platform>
+        <info>
+            Add this script tag to your index.html:
+            &lt;script src="js/helpshiftpg.js"&gt;&lt;/script&gt;
+        </info>
 </plugin>
