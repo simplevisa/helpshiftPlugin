@@ -26,7 +26,7 @@
         <header-file src="src/ios/Helpshift.h" />
 
         <source-file src="src/ios/HelpshiftPG.m" compiler-flags="-fno-objc-arc" />
-        <source-file src="src/ios/libHelpshift.a" framework="true" compiler-flags="-fno-objc-arc"/>
+        <source-file src="src/ios/libHelpshift.a" framework="true"/>
 
         <resource-file src="src/ios/HSResources" />
         <resource-dir src="src/ios/HSThemes"  />
