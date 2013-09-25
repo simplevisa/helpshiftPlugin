@@ -29,7 +29,10 @@
         <source-file src="src/ios/libHelpshift.a" framework="true"/>
 
         <resource-file src="src/ios/HSResources" />
-        <resource-file src="src/ios/HSThemes"  />
+
+        <!-- HSThemes-->
+        <resource-file src="src/ios/HSThemes/HelpshiftConfig.plist" target-dir="Resources/HSThemes" />
+        <resource-file src="src/ios/HSThemes/HelpshiftConfigDark.plist" target-dir="Resources/HSThemes" />
 
         <framework src="CoreGraphics.framework" />
         <framework src="QuartzCore.framework" />
